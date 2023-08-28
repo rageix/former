@@ -120,11 +120,11 @@ export default class FieldController<T> {
    */
   setValue = (value: FieldTypes) => {
     let errors: string[] = [];
-    if (
+    const validate =
       this.validateClean ||
       !this.validateOnSubmit ||
-      (this.validateOnSubmit && this.submitted)
-    ) {
+      (this.validateOnSubmit && this.submitted);
+    if (validate) {
       errors = this.beforeValidation(value);
     }
     this.updateState({
@@ -133,7 +133,7 @@ export default class FieldController<T> {
       value: value,
       errors: errors,
     });
-    if (Object.values(this.validateOtherFields).length > 0) {
+    if (validate && Object.values(this.validateOtherFields).length > 0) {
       this.parentController.validateFields(this.validateOtherFields);
     }
     this.parentController.onFieldChange();
