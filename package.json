@@ -2,7 +2,7 @@
   "name": "@rageix/former",
   "description": "A headless form hook for React.",
   "author": "Brad Bertsche",
-  "private": true,
+  "private": false,
   "version": "0.1.0",
   "type": "module",
   "scripts": {

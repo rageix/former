@@ -2,7 +2,7 @@
 
 ## What is it
 
-A headless (React)[https://react.dev] form component. It allows you to 
+A headless [React](https://react.dev) form component. It allows you to 
 specify form fields, which will then create child form controllers 
 with separate states. All form controls will update in their own 
 independent states allow the field to update just itself instead of all fields.
