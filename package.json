@@ -3,7 +3,9 @@
   "description": "A headless form hook for React.",
   "author": "Brad Bertsche",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "main": "lib/FieldController.js",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",

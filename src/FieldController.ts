@@ -152,13 +152,11 @@ export default class FieldController<T> {
         value = !this.trueState.value;
         break;
       case FieldType.Number:
-        value = Number(e.target.value);
+        value = Number(e.currentTarget?.value);
         break;
       default:
-        value = e.target.value;
+        value = e.currentTarget?.value;
     }
-
-    console.log(value);
 
     if (this.transformValue) {
       value = this.transformValue(value);

@@ -1,5 +1,5 @@
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
-import Former from './Former.tsx';
+import Former from './Former';
 declare enum FieldType {
     String = 0,
     Number = 1,
