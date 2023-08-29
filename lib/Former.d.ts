@@ -1,4 +1,4 @@
-import FieldController from './FieldController';
+import FieldController from './FieldController.js';
 import { Dispatch, FormEvent, FormHTMLAttributes, ReactElement, SetStateAction } from 'react';
 export type FieldTypes = string | number | boolean;
 export type ValidateFn = (value: FieldTypes) => any[] | void;

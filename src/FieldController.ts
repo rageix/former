@@ -1,5 +1,5 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
-import Former, { FieldTypes, TransformFn, ValidateFn } from './Former';
+import Former, { FieldTypes, TransformFn, ValidateFn } from './Former.js';
 
 enum FieldType {
   String,

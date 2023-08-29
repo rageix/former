@@ -1,4 +1,4 @@
-import FieldController from './FieldController';
+import FieldController from './FieldController.js';
 import {
   Dispatch,
   FormEvent,
