@@ -1,4 +1,4 @@
-import FieldController, { FieldTypes } from './FieldController';
+import FieldController from './FieldController';
 import {
   Dispatch,
   FormEvent,
@@ -9,14 +9,18 @@ import {
   useState,
 } from 'react';
 
+export type FieldTypes = string | number | boolean;
+export type ValidateFn = (value: FieldTypes) => any[] | void;
+export type TransformFn = (value: FieldTypes) => FieldTypes;
+
 interface FieldProps<T> {
   name: keyof T;
   children: (arg: FieldController<T>) => ReactElement;
-  validate?: (value: FieldTypes) => any[] | void;
+  validate?: ValidateFn;
   validateClean?: boolean;
   validateOnSubmit?: boolean;
   validateOtherFields?: (keyof T)[];
-  transformValue?: (value: FieldTypes) => FieldTypes;
+  transformValue?: TransformFn;
 }
 
 type FieldObj<T> = {
@@ -231,5 +235,13 @@ export default class Former<T> {
     }, [props]);
 
     return props.children(controller);
+  };
+
+  reset = () => {
+    this.setValid(true);
+    this.setSubmitted(false);
+    for (const value of Object.values<FieldController<T>>(this.fields)) {
+      value.reset();
+    }
   };
 }

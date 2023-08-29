@@ -1,13 +1,11 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
-import Former from './Former';
+import Former, { FieldTypes, TransformFn, ValidateFn } from './Former';
 
 enum FieldType {
   String,
   Number,
   Boolean,
 }
-
-export type FieldTypes = string | number | boolean;
 
 interface FieldState {
   value: FieldTypes;
@@ -28,8 +26,8 @@ export default class FieldController<T> {
   state: FieldState = null as any;
   setState: Dispatch<SetStateAction<FieldState>> = null as any;
   fieldType: FieldType;
-  validate: undefined | ((value: FieldTypes) => any[] | void);
-  transformValue: undefined | ((value: FieldTypes) => FieldTypes);
+  validate: undefined | ValidateFn;
+  transformValue: undefined | TransformFn;
   validateClean: boolean = false;
   validateOnSubmit: boolean = true;
   validateOtherFields: (keyof T)[] = [];
@@ -192,4 +190,12 @@ export default class FieldController<T> {
   hasErrors = (): boolean => {
     return this.trueState.errors.length > 0;
   };
+
+  reset = () => {
+    let newState = {...this.defaultState};
+    this.setState(newState);
+    this.trueState = newState;
+    this.submitted = false;
+    this.hasValidated = false;
+  }
 }

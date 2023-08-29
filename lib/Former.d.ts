@@ -1,13 +1,16 @@
-import FieldController, { FieldTypes } from './FieldController';
+import FieldController from './FieldController';
 import { Dispatch, FormEvent, FormHTMLAttributes, ReactElement, SetStateAction } from 'react';
+export type FieldTypes = string | number | boolean;
+export type ValidateFn = (value: FieldTypes) => any[] | void;
+export type TransformFn = (value: FieldTypes) => FieldTypes;
 interface FieldProps<T> {
     name: keyof T;
     children: (arg: FieldController<T>) => ReactElement;
-    validate?: (value: FieldTypes) => any[] | void;
+    validate?: ValidateFn;
     validateClean?: boolean;
     validateOnSubmit?: boolean;
     validateOtherFields?: (keyof T)[];
-    transformValue?: (value: FieldTypes) => FieldTypes;
+    transformValue?: TransformFn;
 }
 type FieldObj<T> = {
     [P in keyof T]: FieldController<T>;
@@ -89,5 +92,6 @@ export default class Former<T> {
      * @param {FieldProps<T>} props
      */
     Field: (props: FieldProps<T>) => ReactElement<any, string | import("react").JSXElementConstructor<any>>;
+    reset: () => void;
 }
 export {};
