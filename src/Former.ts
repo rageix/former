@@ -137,7 +137,9 @@ export default class Former<T> {
    */
   setValues = (values: Partial<T>) => {
     for (const [key, value] of Object.entries(values)) {
-      this.fields[key as keyof T].setValue(value as FieldTypes);
+      if(key in this.fields) {
+        this.fields[key as keyof T].setValue(value as FieldTypes);
+      }
     }
   };
 
